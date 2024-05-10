@@ -1,28 +1,49 @@
-# imersao_ia
+## Sistema de Detecção de Roubo de Carga
 
+### Descrição
 
+Este sistema visa combater o roubo de carga através da monitorização do peso e tipo de veículo em pontos de saída específicos.
 
+### Funcionamento
 
-Criando um sistema de detecção de "Roubo de Carga"
+1. **Verificação de Peso:**
 
-O sistema possui um banco de dados com acesso a placas e se o veiculo pesou, puxando por exemplo de um sistema de pesagem de balança rodoviária
+    * Ao sair do local, o veículo passa por uma balança rodoviária.
+    * **Carreta carregada:**
+        * Se o peso registrado for compatível com a carga, a saída é liberada.
+        * Caso contrário, há indício de desvio de carga e a equipe de segurança é acionada.
+    * **Carreta vazia ou outro tipo de veículo:**
+        * A saída é liberada automaticamente.
 
-Ao sair em um ponto especificio de uma empresa por exemplo, esse local so pode sair veiculo em algumas condições
+2. **Captura de Imagem:**
 
+    * Uma câmera na portaria captura uma foto do veículo ao detectar movimento.
+    * A foto é salva no banco de dados.
 
-Carreta carregada     > Se estiver pesado pode sair, caso contrario existe um possível desvio de carga!
-Carreta vazia         > Permite a saída
-Outro tipo de veiculo > Permite a saída
+3. **Análise de Imagem:**
 
-Dessa forma entao ao sair pela portaria onde existe uma possivel cancela automatizada, o sistema de camera realiza um snapshot ao detectar um movimento na area de interesse da câmera e salva ela no banco de fotos
+    * A imagem é enviada para o **GEMINI**, um sistema de inteligência artificial, para identificar o tipo de veículo.
+    * **Caminhão:**
+        * Se confirmado, o **GEMINI** verifica se o veículo está carregado.
+        * **Vazio:**
+            * A saída na cancela é liberada.
+        * **Carregado:**
+            * O sistema consulta o banco de dados para verificar se o veículo foi pesado e se a nota fiscal foi emitida.
+            * **Pesado com nota fiscal:**
+                * A saída na cancela é liberada.
+            * **Não pesado ou sem nota fiscal:**
+                * A equipe de segurança patrimonial é acionada para investigar o possível desvio de carga.
 
-Nesse caso, simulei com o random, envio a foto para o GEMINI fazer a primeira tratativa em relação a qual o tipo do veículo.
+### Benefícios
 
-Caso se trata de um "caminhão" faço uma nova tratativa com o GEMINI para identificar se o veículo esta carregado ou nao.
+* Reduz o índice de roubo de carga.
+* Agiliza o processo de liberação de saída para veículos em situação regular.
+* Permite a identificação rápida de veículos suspeitos.
 
-Estando vazio, ja libero a saída na cancela, caso contrario, faço uma consulta no banco de dados relacionado a essa placa pelo ID da foto e consulto se pesou ou não
+### Componentes
 
-Caso tenha efetuado a pesagem e a emissão da nota fiscal para transporte, libero a saída. Se o veículo foi pego saindo cheio e sem pesar, aciono a equipe da segurança patrimonial para tratar um possível desvio de carga da empresa!
-
-
-Fim!
+* Balança rodoviária.
+* Câmera.
+* Sistema **GEMINI** de inteligência artificial.
+* Banco de dados com informações de pesagem e notas fiscais.
+* Cancel
