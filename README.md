@@ -2,15 +2,15 @@
 
 ### Descrição
 
-Este sistema visa combater o roubo de carga através da monitorização do peso e tipo de veículo em pontos de saída específicos utilizando o **GEMINI** a inteligencia artificial do **GOOGLE**.
+Este sistema visa combater o roubo de carga através da monitorização do peso e tipo de veículo em pontos de saída específicos utilizando o **GEMINI** a inteligência artificial do **GOOGLE**.
 
 ### Funcionamento
 
-    * **Carreta carregada:**
+    **Carreta carregada:**
         * Se o peso registrado for compatível com a carga, a saída é liberada.
         * Caso contrário, há indício de desvio de carga e a equipe de segurança patrimonial é acionada.
         
-    * **Carreta vazia ou outro tipo de veículo:**
+     **Carreta vazia ou outro tipo de veículo:**
         * A saída é liberada automaticamente.
 
 1. **Verificação de Peso:**
